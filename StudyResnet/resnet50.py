@@ -86,28 +86,27 @@ class ResNet50(nn.Module):
 
     def forward(self, x):
         out = self.stage1(x)
-        print(out.shape)
+        # print(out.shape)
         out = self.stage2(out)
-        print(out.shape)
+        # print(out.shape)
         out = self.stage3(out)
-        print(out.shape)
+        # print(out.shape)
         out = self.stage4(out)
-        print(out.shape)
+        # print(out.shape)
         out = self.stage5(out)
-        print(out.shape)
+        # print(out.shape)
         out = self.avgpool(out)
-        print(out.shape)
-        print(out.size(0))
+        # print(out.shape)
+        # print(out.size(0))
         out = out.view(out.size(0), 2048)
         # out = torch.flatten(out, 1)
-
         out = self.fc(out)
         return out
 
 
 if __name__ == '__main__':
     model = ResNet50(1000)
-    x = torch.randn(1, 3, 224, 224)
+    x = torch.randn(1, 3, 640, 640)
     y = model(x)
 
 
